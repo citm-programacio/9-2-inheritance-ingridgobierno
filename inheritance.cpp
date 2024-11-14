@@ -2,18 +2,79 @@
 //
 
 #include <iostream>
+#include <string>
+using namespace std;
+
+class Building {
+protected:
+	string name;
+public:
+	Building(string _n) : name(_n) {}
+	string getName() {
+		return name;
+	}
+};
+
+class Warehouse : Building {
+private:
+	int wood;
+	int rocks;
+	int wheat;
+public:
+	Warehouse(string n, int fusta, int rocas, int trigo) : Building(n), wood(fusta), rocks(rocas), wheat(trigo) {}
+	void printResources() {
+		cout << "Fusta que hi ha: " << wood << endl;
+		cout << "Roques que hi ha: " << rocks << endl;
+		cout << "Blat que hi ha: " << wheat << endl;
+	}
+};
+
+class House : Building {
+private:
+	int floors;
+	int inhabitants;
+	int servants;
+public:
+	House(string n, int terra, int habitants, int sirvents) : Building(n), floors(terra), inhabitants(habitants), servants(sirvents) {}
+	void printHouse() {
+		cout << "Plantes de la casa: " << floors << endl;
+		cout << "Habitants de la casa: " << inhabitants << endl;
+		cout << "Servents de la casa: " << servants << endl;
+	}
+};
+
+class Temple : Building {
+private:
+	string God;
+	int priest;
+public:
+	Temple(string n, int cura, string deu) : Building(n), priest(cura), God(deu) {}
+	void printTemple() {
+		cout << "La deesa del temple es diu: " << God << "." << endl;
+		cout << "En aquest temple hi ha " << priest << " cures." << endl;
+	}
+};
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	Building m("MAGATZEM");
+	Warehouse w(m.getName(), 1, 2, 3);
+	cout << m.getName() << endl;
+	w.printResources();
+	cout << endl;
+
+	Building c("CASA");
+	House h(c.getName(), 3, 2, 3);
+	cout << c.getName() << endl;
+	h.printHouse();
+	cout << endl;
+
+	Building t("TEMPLE");
+	Temple g(t.getName(), 3, "Ingrid");
+	cout << t.getName() << endl;
+	g.printTemple();
+	cout << endl;
+
 }
 
-// Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
-// Depurar programa: F5 o menú Depurar > Iniciar depuración
-
-// Sugerencias para primeros pasos: 1. Use la ventana del Explorador de soluciones para agregar y administrar archivos
-//   2. Use la ventana de Team Explorer para conectar con el control de código fuente
-//   3. Use la ventana de salida para ver la salida de compilación y otros mensajes
-//   4. Use la ventana Lista de errores para ver los errores
-//   5. Vaya a Proyecto > Agregar nuevo elemento para crear nuevos archivos de código, o a Proyecto > Agregar elemento existente para agregar archivos de código existentes al proyecto
-//   6. En el futuro, para volver a abrir este proyecto, vaya a Archivo > Abrir > Proyecto y seleccione el archivo .sln
